@@ -152,7 +152,7 @@ if __name__ == "__main__":
     if not os.path.exists(predict_dir):
         os.mkdir(predict_dir)
 
-    model_file = '040.ckpt'
+    model_file = 'airway_seg.ckpt'
     model = load_model(model_file)
 
     print("model loaded successfully!")
