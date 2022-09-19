@@ -27,12 +27,7 @@ SLIDE_SIZE = [64, 64, 64]  # 移动步长，有overlap
 
 
 def load_model(model_file):
-    model = UNet3D(in_channels=1, out_channels=out_channels, coord=True, Dmax=cubesize[0], Hmax=cubesize[1],
-                   Wmax=cubesize[2])
-
-    checkpoint = torch.load(model_file)
-
-    model.load_state_dict(checkpoint['state_dict'], strict=False)
+    model = torch.load(r'model/airway_seg.pth')
 
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     model = model.to(device)
@@ -152,7 +147,7 @@ if __name__ == "__main__":
     if not os.path.exists(predict_dir):
         os.mkdir(predict_dir)
 
-    model_file = 'airway_seg.ckpt'
+    model_file = 'airway_seg.pth'
     model = load_model(model_file)
 
     print("model loaded successfully!")
